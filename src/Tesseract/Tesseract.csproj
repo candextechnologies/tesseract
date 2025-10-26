@@ -15,10 +15,24 @@
     <PackageProjectUrl>https://github.com/charlesw/tesseract/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/charlesw/tesseract/</RepositoryUrl>
     <PackageTags>Tesseract Ocr</PackageTags>
-    <Version>5.2.0</Version>
-    <AssemblyVersion>5.2.0</AssemblyVersion>
+    <Version>5.2.1</Version>
+    <AssemblyVersion>5.2.1</AssemblyVersion>
     <NeutralLanguage></NeutralLanguage>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    
+    <!-- Symbol package settings -->
+	<!-- Note - the following is intended to be able to right click on Tesseract.csproj in visual studio 2022 and selecting pack-->
+	<!--        it will create Tesseract.5.2.1.nupkg and Tesseract.5.2.1.snupkg in src\Tesseract\bin\Release when you set the sln to release -->
+	<!--        then place a NuGet.config file in the same level of your .sln file -->
+	<!--        point to a directory where you put the .nupkg and .snupkg and add it from Manage nuget packages for your project-->
+	<!--    ** This is for cases where you need the code without your PR being merged to the main repo and uploaded to www.nuget.org -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>portable</DebugType>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
   
   <!-- .NET 4.8 references, compilation flags and build options -->
@@ -36,6 +50,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <DocumentationFile>.\Tesseract.xml</DocumentationFile>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Reflection.Emit">
       <Version>4.7.0</Version>
@@ -56,7 +78,7 @@
     <Content Include="arm64\*.dll" Pack="true" PackageCopyToOutput="true" PackagePath="arm64">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Tesseract.targets" Pack="true" PackageCopyToOutput="true" PackagePath="build/">
+    <Content Include="Tesseract.targets" Pack="true" PackagePath="build\">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/charlesw/tesseract</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+</Project>

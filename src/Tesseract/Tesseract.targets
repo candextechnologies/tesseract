@@ -1,29 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <None Include="$(MSBuildThisFileDirectory)\..\x86\leptonica-1.82.0.dll">
-            <Link>x86\leptonica-1.82.0.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MSBuildThisFileDirectory)\..\x86\tesseract50.dll">
-            <Link>x86\tesseract50.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MSBuildThisFileDirectory)\..\x64\leptonica-1.85.0.dll">
-            <Link>x64\leptonica-1.85.0.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MSBuildThisFileDirectory)\..\x64\tesseract55.dll">
-            <Link>x64\tesseract55.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-		 <None Include="$(MSBuildThisFileDirectory)\..\arm64\leptonica-1.85.0.dll">
-            <Link>x64\leptonica-1.85.0.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="$(MSBuildThisFileDirectory)\..\arm64\tesseract55.dll">
-            <Link>x64\tesseract55.dll</Link>
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
+  <PropertyGroup>
+    <TesseractPackageRoot>$(MSBuildThisFileDirectory)..\</TesseractPackageRoot>
+  </PropertyGroup>
+  
+  <!-- Copy native binaries based on platform -->
+  <ItemGroup Condition="'$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'x86'">
+    <None Include="$(TesseractPackageRoot)build\x86\*.dll">
+      <Link>x86\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'x64'">
+    <None Include="$(TesseractPackageRoot)build\x64\*.dll">
+      <Link>x64\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'ARM64'">
+    <None Include="$(TesseractPackageRoot)build\arm64\*.dll">
+      <Link>arm64\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <!-- For AnyCPU, copy all platforms -->
+  <ItemGroup Condition="'$(Platform)' == 'AnyCPU'">
+    <None Include="$(TesseractPackageRoot)build\x86\*.dll">
+      <Link>x86\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(TesseractPackageRoot)build\x64\*.dll">
+      <Link>x64\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(TesseractPackageRoot)build\arm64\*.dll">
+      <Link>arm64\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
