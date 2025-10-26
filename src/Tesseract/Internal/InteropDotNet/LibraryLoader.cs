@@ -37,7 +37,7 @@ namespace InteropDotNet
                 if (!loadedAssemblies.ContainsKey(fileName))
                 {
                     if (platformName == null)
-                        platformName = SystemManager.GetPlatformName();
+                        platformName = SystemManager.GetPlatformArchitecture();
                     
                     Logger.TraceInformation("Current platform: " + platformName);
                                         

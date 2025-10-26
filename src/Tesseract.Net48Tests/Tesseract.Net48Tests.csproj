@@ -40,12 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="nunit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.3.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="nunit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -191,10 +188,16 @@
     <None Include="..\Tesseract.Tests\tessdata\pdf.ttf" Link="tessdata\pdf.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-	<None Include="..\Tesseract\x64\leptonica-1.82.0.dll" Link="x64\leptonica-1.82.0.dll">
+	<None Include="..\Tesseract\arm64\leptonica-1.85.0.dll" Link="arm64\leptonica-1.85.0.dll">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
-	<None Include="..\Tesseract\x64\tesseract50.dll" Link="x64\tesseract50.dll">
+	<None Include="..\Tesseract\arm64\tesseract55.dll" Link="arm64\tesseract55.dll">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+	<None Include="..\Tesseract\x64\leptonica-1.85.0.dll" Link="x64\leptonica-1.85.0.dll">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+	<None Include="..\Tesseract\x64\tesseract55.dll" Link="x64\tesseract55.dll">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
 	<None Include="..\Tesseract\x86\leptonica-1.82.0.dll" Link="x86\leptonica-1.82.0.dll">

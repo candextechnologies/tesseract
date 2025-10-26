@@ -8,9 +8,10 @@ namespace InteropDotNet
 {
     static class SystemManager
     {
-        public static string GetPlatformName()
+        public static string GetPlatformArchitecture()
         {
-            return IntPtr.Size == sizeof(int) ? "x86" : "x64";
+            string arch = Environment.Is64BitProcess ? (RuntimeInformation.OSArchitecture == Architecture.Arm64 ? "arm64" : "x64") : "x86";
+            return arch;
         }
 
         public static OperatingSystem GetOperatingSystem()
