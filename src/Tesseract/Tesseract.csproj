@@ -15,8 +15,8 @@
     <PackageProjectUrl>https://github.com/charlesw/tesseract/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/charlesw/tesseract/</RepositoryUrl>
     <PackageTags>Tesseract Ocr</PackageTags>
-    <Version>5.2.1</Version>
-    <AssemblyVersion>5.2.1</AssemblyVersion>
+    <Version>5.2.2</Version>
+    <AssemblyVersion>5.2.2</AssemblyVersion>
     <NeutralLanguage></NeutralLanguage>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     
@@ -69,18 +69,11 @@
     <CSFile Include="*.cs" Exclude="obj\**\.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="x64\*.dll" Pack="true" PackageCopyToOutput="true" PackagePath="x64">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x86\*.dll" Pack="true" PackageCopyToOutput="true" PackagePath="x86">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="arm64\*.dll" Pack="true" PackageCopyToOutput="true" PackagePath="arm64">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tesseract.targets" Pack="true" PackagePath="build\">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
+    <!-- Pack native binaries and the targets file into the 'build' folder -->
+    <Content Include="x64\**\*.*" Pack="true" PackagePath="build\x64\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="x86\**\*.*" Pack="true" PackagePath="build\x86\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="arm64\**\*.*" Pack="true" PackagePath="build\arm64\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Tesseract.targets" Pack="true" PackagePath="build\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="x64\tesseract.exe">
